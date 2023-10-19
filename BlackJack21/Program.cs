@@ -12,4 +12,35 @@ namespace BlackJack21
         {
         }
     }
+
+    public class Card
+    {
+        public char Suit;
+        public int Value;
+
+        public Card(char suit, int value)
+        {
+            Suit = suit;
+            Value = value;
+        }
+
+        public string GetInfo()
+        {
+            return Value.ToString() + Suit.ToString();
+        }
+    }
+
+    //ENUM 
+    public enum Suit
+    {
+        Corazon = '♥',
+        Diamante = '♦',
+        Trebol = '♣',
+        Pica = '♠'
+    }
+
+  
+
+
+
 }
