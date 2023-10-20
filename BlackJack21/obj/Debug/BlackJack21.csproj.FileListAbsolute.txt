@@ -1,0 +1,7 @@
+C:\Users\Alumno tarde\tareas\Programacion\BlackJack21\BlackJack21\bin\Debug\BlackJack21.exe.config
+C:\Users\Alumno tarde\tareas\Programacion\BlackJack21\BlackJack21\bin\Debug\BlackJack21.exe
+C:\Users\Alumno tarde\tareas\Programacion\BlackJack21\BlackJack21\bin\Debug\BlackJack21.pdb
+C:\Users\Alumno tarde\tareas\Programacion\BlackJack21\BlackJack21\obj\Debug\BlackJack21.csproj.AssemblyReference.cache
+C:\Users\Alumno tarde\tareas\Programacion\BlackJack21\BlackJack21\obj\Debug\BlackJack21.csproj.CoreCompileInputs.cache
+C:\Users\Alumno tarde\tareas\Programacion\BlackJack21\BlackJack21\obj\Debug\BlackJack21.exe
+C:\Users\Alumno tarde\tareas\Programacion\BlackJack21\BlackJack21\obj\Debug\BlackJack21.pdb
