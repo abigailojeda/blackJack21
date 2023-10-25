@@ -10,6 +10,8 @@ namespace BlackJack21
     {
         static void Main(string[] args)
         {
+            int objective = 21;
+
             //initialize deck
             Deck game = new Deck();
 
@@ -26,9 +28,58 @@ namespace BlackJack21
             //game.ShowDeck();
 
             //steal a card
-            Card stolenCard = game.Draw();
-            Console.WriteLine("STOLEN CARD: " + stolenCard.GetInfo());
-            
+            //Card stolenCard = game.Draw();
+            //Console.WriteLine("STOLEN CARD: " + stolenCard.GetInfo());
+
+            Card card1 = game.Draw();
+            Card card2 = game.Draw();
+
+            List<Card> cards = new List<Card>();
+            cards.Add(card1);
+            cards.Add(card2);
+
+            //INITIALIZE BLACKJACK PLAYER
+            BlackjackPlayer player = new BlackjackPlayer("Pepe", cards);
+            player.ShowHandInfo();
+
+            bool finish = false; 
+
+            while (!finish)
+            {
+                int points = player.GetPlayerPoints(); 
+
+                if (points > objective)
+                {
+                    Console.WriteLine("Has perdido, con " + points + " puntos");
+                    break; 
+                }
+                else if (points == objective)
+                {
+                    Console.WriteLine("Has ganado, con " + points + " puntos");
+                    break; 
+                }
+                else
+                {
+                    Console.WriteLine("Tienes " + points + " puntos");
+
+                    Console.WriteLine("Selecciona\n1.hit\n2.stand");
+                    string option = Console.ReadLine();
+
+                    if (option == "1")
+                    {
+                        Card newCard = game.Draw();
+                        player.AddCard(newCard);
+                        player.ShowHandInfo();
+                    }
+                    else if (option == "2")
+                    {
+                        Console.WriteLine("Bye bye!");
+                        finish = true; 
+                    }
+                }
+            }
+
+
             string input = Console.ReadLine();
         }
     }
@@ -114,13 +165,11 @@ namespace BlackJack21
 
         private void InitializeDeck()
         {
-            //Console.WriteLine("¡Hola, mundo!");
-
             cards = new List<Card>();
             Suit[] suits = (Suit[])Enum.GetValues(typeof(Suit));
             
                
-            int[] values = new int[] { 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10 };
+            int[] values = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10 };
 
             foreach (Suit suit in suits)
             {
@@ -152,7 +201,7 @@ namespace BlackJack21
             hand = Hand;
         }
 
-        public void addCard(Card card)
+        public void AddCard(Card card)
         {
             hand.Add(card);
         }
@@ -170,13 +219,50 @@ namespace BlackJack21
     //BLACKJACK PLAYER
     public class BlackjackPlayer : Player
     {
-        public string test;
+      
        public BlackjackPlayer(string name, List<Card> hand) : base(name, hand)
         {
            
         }
+
+        public bool HasAs(Card card)
+        {
+            return card.GetValue() == 1;
+        }
+
+        public int GetPlayerPoints()
+        {
+            int points = 0;
+            foreach (var card in hand)
+            {
+                int cardValue = card.GetValue();
+                if (cardValue == 1)
+                {
+                    points += 11;
+                }
+                else
+                {
+                    points += card.GetValue();
+                }
+            }
+            return points;
+        }
+
+        public bool PlayerLose()
+        {
+            return GetPlayerPoints() > 21;
+        }
     }
 
+    //CRUPIER
+    public class Crupier : BlackjackPlayer
+    {
+       
+        public Crupier(string name, List<Card> hand) : base(name, hand)
+        {
+
+        }
+    }
 
 
     //ENUM 
@@ -188,7 +274,6 @@ namespace BlackJack21
         Pica = '♠'
     }
 
-  
 
 
 
